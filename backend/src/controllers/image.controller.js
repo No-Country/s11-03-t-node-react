@@ -1,5 +1,5 @@
-import cloudinary from "../config/cloudinary-config";
-import { Stream } from "stream";
+import cloudinary from '../config/cloudinary-config';
+import { Stream } from 'stream';
 
 export const uploadImage = async (req, res) => {
   try {

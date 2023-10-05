@@ -1,6 +1,6 @@
 import express from 'express';
 import clientRoutes from './client.routes';
-import imageRoutes from './images.routes'
+import imageRoutes from './images.routes';
 
 const router = express.Router();
 
@@ -8,6 +8,6 @@ const router = express.Router();
 router.use('/api/v1/clients', clientRoutes);
 // Rutas de Imagenes
 router.use('/api/v1/images', imageRoutes);
-// Otras rutas 
+// Otras rutas
 
 export default router;

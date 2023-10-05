@@ -11,13 +11,21 @@ app.use(express.json());
 // Utiliza la aplicación configurada que incluye todas las rutas
 app.use('/', routes);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
+// Configura Express para servir archivos estáticos desde la carpeta "public"
+app.use(express.static('public'));
+
+// Ruta de inicio que muestra el archivo "index.html"
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 // Llama a la función de conexión a la base de datos
 connectToDatabase()
   .then(() => {
     console.log('Conexión exitosa a la base de datos');
-    console.log(`Servidor escuchando en el puerto ${port}`);
+    console.log(`Servidor escuchando en http://localhost:${port}`);
   })
   .catch((error) => {
     console.error('Error al conectar con la base de datos:', error);
@@ -25,5 +33,5 @@ connectToDatabase()
 
 // Manejo de errores en el puerto
 app.listen(port, () => {
-  console.log(`Aplicación Express corriendo en el puerto ${port}`);
+  console.log(`Aplicación Express corriendo en http://localhost:${port}`);
 });
