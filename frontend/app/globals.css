@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Lo usa React Slick para el espacio entre cards */
+.slick-slide {
+    padding: 0px 10px;
+}

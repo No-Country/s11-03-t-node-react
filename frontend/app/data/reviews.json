@@ -1,0 +1,94 @@
+{
+  "reviews": [
+    {
+      "user_id": 1,
+      "rating": 5,
+      "title": "Excelente Servicio",
+      "detailed_comment": "La atención que recibimos para nuestra mascota fue excepcional. El personal fue amable y competente, y nuestra mascota se sintió muy cómoda durante la visita. ¡Recomendamos esta veterinaria a todos!",
+      "reviewer_name": "Lorri M. Dusten",
+      "pet_name_attended": "Rex",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 2,
+      "rating": 4,
+      "title": "Buena Experiencia",
+      "detailed_comment": "En general, tuvimos una buena experiencia en esta veterinaria. El personal fue amable y atento. Nuestra mascota se sintió cómoda y el tratamiento fue efectivo.",
+      "reviewer_name": "Ana G. Rodríguez",
+      "pet_name_attended": "Luna",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 3,
+      "rating": 5,
+      "title": "Atención Sobresaliente",
+      "detailed_comment": "No podemos estar más contentos con el servicio que recibimos para nuestro querido amigo peludo. El equipo de la veterinaria fue muy atento, y nuestra mascota se recuperó rápidamente. ¡Gracias!",
+      "reviewer_name": "Carlos J. Pérez",
+      "pet_name_attended": "Buddy",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 4,
+      "rating": 4,
+      "title": "Muy Buen Trato",
+      "detailed_comment": "Estamos satisfechos con la atención que obtuvimos en esta veterinaria. No tuvimos que esperar dada que nuestra cita fue puntual, el personal fue amable, y nuestra mascota se sintió a gusto durante la visita.",
+      "reviewer_name": "Laura P. Gómez",
+      "pet_name_attended": "Simba",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 5,
+      "rating": 5,
+      "title": "Excepcional",
+      "detailed_comment": "La atención y el cuidado que brindaron a nuestra mascota superaron nuestras expectativas. El personal es amable y profesional. Nuestra mascota se siente mejor gracias a ellos.",
+      "reviewer_name": "Pedro A. Fernández",
+      "pet_name_attended": "Coco",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 6,
+      "rating": 5,
+      "title": "Cita Puntual y Excelente Servicio",
+      "detailed_comment": "Siempre que programamos una cita, la atención es puntual. El servicio es excepcional, y el personal se toma el tiempo para cuidar de nuestra mascota. ¡Altamente recomendado!",
+      "reviewer_name": "Isabel M. Sánchez",
+      "pet_name_attended": "Rocky",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 7,
+      "rating": 4,
+      "title": "Atención Eficiente",
+      "detailed_comment": "Hemos estado viniendo aquí durante un tiempo y siempre nos sorprende lo eficiente que es el servicio. La atención es buena, y nuestras citas son siempre puntuales.",
+      "reviewer_name": "Juan C. López",
+      "pet_name_attended": "Molly",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 8,
+      "rating": 5,
+      "title": "Servicio Rápido y Atento",
+      "detailed_comment": "La atención es rápida y siempre acorde a la cita. El personal es amable y se preocupa por nuestras necesidades. Nuestra mascota se siente segura y cuidada.",
+      "reviewer_name": "Lucía G. Rodríguez",
+      "pet_name_attended": "Lola",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 9,
+      "rating": 4,
+      "title": "Citas Sin Espera",
+      "detailed_comment": "Nunca hemos tenido que esperar en nuestras citas en esta veterinaria. El servicio es bueno, y nuestra mascota se siente cómoda. Un lugar confiable para el cuidado de mascotas.",
+      "reviewer_name": "Andrés F. Martínez",
+      "pet_name_attended": "Bella",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    },
+    {
+      "user_id": 10,
+      "rating": 5,
+      "title": "Puntualidad y Calidad",
+      "detailed_comment": "La puntualidad es esencial para nosotros debido a nuestras agendas ocupadas. En esta veterinaria, siempre somos atendidos a tiempo, y la calidad del servicio es excelente. Nuestra mascota lo aprecia.",
+      "reviewer_name": "Sofía P. Torres",
+      "pet_name_attended": "Simba",
+      "photo_url": "https://res.cloudinary.com/dxq0pypxu/image/upload/v1697584095/b7p4uq9mhd3qwxjdvwii.png"
+    }
+  ]
+}
