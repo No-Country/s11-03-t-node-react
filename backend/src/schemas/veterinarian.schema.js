@@ -2,20 +2,12 @@ import mongoose from 'mongoose';
 
 // Define el esquema para Veterinarian con anotaciones Swagger
 const veterinarianSchemaDefinition = new mongoose.Schema({
-  first_name: {
+  fullname: {
     type: String,
     required: true,
     swagger: {
       type: 'string',
-      description: 'Primer nombre del veterinario',
-    },
-  },
-  last_name: {
-    type: String,
-    required: true,
-    swagger: {
-      type: 'string',
-      description: 'Apellido del veterinario',
+      description: 'Nombre completo del veterinario',
     },
   },
   speciality: {

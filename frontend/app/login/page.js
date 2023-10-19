@@ -7,6 +7,11 @@ import FooterAuth from '../components/auth/footerAuth'
 import InputAuth from '../components/auth/inputAuth'
 import Link from 'next/link'
 import useErrors from './useErrors'
+import { useRouter } from 'next/navigation'
+import UseToken from '../hooks/token'
+
+
+
 
 const notifyOk = (msg) => toast.success(msg)
 const notifyError = (msg) => toast.error(msg)
@@ -14,18 +19,18 @@ const notifyError = (msg) => toast.error(msg)
 const Login = () => {
   const [email, setEmail] = useState('jhondoe@gmail.com')
   const [password, setPassword] = useState('Password123$')
-  const [token, setToken] = useState(null)
+  const {setToken} = UseToken()
+  const router = useRouter()
+  
   const { errors, setErrors, errorRef, validarEmail, validarPassword } =
     useErrors()
 
   const resetTokenAndErrorRef = () => {
-    localStorage.removeItem('token')
-    setToken('')
+    setToken(null)
     errorRef.current = false
   }
 
   const saveTokenAndResetData = (t) => {
-    localStorage.setItem('token', t)
     setToken(t)
     setErrors('')
     errorRef.current = false
@@ -35,12 +40,15 @@ const Login = () => {
     e.preventDefault()
     validarEmail(email)
     validarPassword(password)
-    console.log(errorRef.current)
+    
     if (errorRef.current != true) {
       const response = await loginService(email, password)
       if (response?.status === 200) {
         notifyOk('Login Exitoso')
         saveTokenAndResetData(response.data.data.token)
+        router.push('/')
+        
+        router.refresh()
       } else {
         notifyError('Las credenciales son incorrectas')
         setErrors('')
@@ -59,11 +67,11 @@ const Login = () => {
             <h1 className="text-3xl font-bold text-center lg:text-left">
               Iniciar Sesión
             </h1>
-            {token && (
+            {/* {token && (
               <div className="text-sm" style={{ textWrap: 'balance' }}>
                 Token: {token.slice(0, 35)}...
               </div>
-            )}
+            )} */}
             <InputAuth
               title="E-mail"
               type="text"
@@ -80,7 +88,7 @@ const Login = () => {
               changeValue={setPassword}
               error={errors?.password}
             />
-            <div className="flex justify-end">¿Olviste la contraseña?</div>
+            <div className="flex justify-end">¿Olvidaste la contraseña?</div>
             <div className="form-control mt-6">
               <button className="btn btn-accent text-accent-content hover:bg-[#FF7E5B]">
                 Iniciar Sesión

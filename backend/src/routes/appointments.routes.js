@@ -9,6 +9,7 @@ import {
 import { createAppointmentValidation, updateAppointmentValidation } from '../middlewares/validation.middleware';
 import { validMongoId } from '../middlewares/validMongoId.middleware';
 import { checkAuthentication } from '../middlewares/auth.middleware';
+import { validateAppointment } from '../middlewares/validateAppointment.middleware';
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.use(checkAuthentication);
 
 // Rutas para citas
 // Registrar una cita
-router.post('/', createAppointmentValidation, createAppointment);
+router.post('/', createAppointmentValidation, validateAppointment, createAppointment);
 //Obtener todas las cita registradas
 router.get('/', getAllAppointments);
 //Obtener una cita por Id

@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import { verificar } from './verificar'
 import Link from 'next/link'
 import useErrors from './useErrors'
+import UseToken from '../hooks/token'
 
 const notifyOk = (msg) => toast.success(msg)
 const notifyError = (msg) => toast.error(msg)
@@ -17,7 +18,7 @@ const Register = () => {
   const [email, setEmail] = useState('jhondoeJr@gmail.com')
   const [password, setPassword] = useState('Password123$')
   const [repeatPassword, setRepeatPassword] = useState('Password123$')
-  const [token, setToken] = useState(null)
+  const { setToken} = UseToken()
 
   const {
     errors,
@@ -30,44 +31,17 @@ const Register = () => {
   } = useErrors()
 
   const resetTokenAndErrorRef = () => {
-    localStorage.removeItem('token')
-    setToken('')
+    
+    setToken(null)
     errorRef.current = false
   }
 
   const saveTokenAndResetData = (t) => {
-    localStorage.setItem('token', t)
+    
     setToken(t)
     setErrors('')
     errorRef.current = false
-  }
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   if (password === repeatPassword) {
-  //     try {
-  //       const response = await registerService(fullname, email, password)
-  //       if (response?.status === 201) {
-  //         notifyOk('Register Exitoso')
-  //         console.log(response.data.data.token)
-  //         localStorage.setItem('token', response.data.data.token)
-  //       } else {
-  //         notifyError(JSON.stringify(response.response.data.errors))
-  //         if (verificar(response.response.data.errors, 'fullname'))
-  //           console.log('error en fullname')
-  //         if (verificar(response.response.data.errors, 'email'))
-  //           console.log('error en email')
-  //         if (verificar(response.response.data.errors, 'password'))
-  //           console.log('error en password')
-  //       }
-  //     } catch (error) {
-  //       notifyError('Register fallido, intente nuevamente')
-  //       console.log(error)
-  //     }
-  //   } else {
-  //     notifyError('Las contraseñas no coinciden')
-  //   }
-  // }
+  }  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -75,7 +49,7 @@ const Register = () => {
     validarPassword(password)
     validarEmail(email)
     validarFullname(fullname)
-    console.log(errorRef.current)
+  
     if (errorRef.current != true) {
       const response = await registerService(fullname, email, password)
       if (response?.status === 201) {

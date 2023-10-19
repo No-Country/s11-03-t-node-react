@@ -1,6 +1,6 @@
 import "./globals.css";
 import { inter, secular_one } from "@/fonts/fonts";
-import NavBar from "./home/navBar";
+import NavBar from "./home/navBar/navBar";
 
 export const metadata = {
   title: "Vet Care",

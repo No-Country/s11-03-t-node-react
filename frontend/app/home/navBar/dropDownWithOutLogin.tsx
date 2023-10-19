@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignIcon } from "./icons";
+import { SignIcon } from "../icons";
 
 export default function DropDown() {
   return (

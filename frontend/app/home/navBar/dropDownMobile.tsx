@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HamburgerIcon } from "./icons";
+import { HamburgerIcon } from "../icons";
 import NavLink from "./navLink";
 
 export default function dropDownMobile() {
@@ -33,13 +33,6 @@ export default function dropDownMobile() {
         <li className="mx-4 my-6 md:my-0">
           <NavLink href="/register">Registro</NavLink>
         </li>
-        {/* <li className="mx-4 my-6 md:my-0">
-          <NavLink href="/login">Perfil</NavLink>
-        </li>
-        <li className="mx-4 my-6 md:my-0">
-          <NavLink href="/register">Cerrar sesion</NavLink>
-        </li> */}
-        
       </ul>
     </div>
   );

@@ -1,7 +1,11 @@
+"use client "
 import Link from "next/link";
-import { Profile } from "./icons";
+import { Profile } from "../icons";
+import UseToken from "@/app/hooks/token";
 
-export default function DropDownWithLogin() {
+export default function DropDownWithLogin(){
+
+  const { handleUpdateToken } = UseToken()
   return (
     <>
       <div className="dropdown dropdown-end">
@@ -18,8 +22,8 @@ export default function DropDownWithLogin() {
           <li>
             <Link href={"#"}>Historial de turnos</Link>
           </li>
-          <li>
-            <Link href={"#"}>Cerrar sesion</Link>
+          <li >
+            <Link href={"#"} onClick={handleUpdateToken}>Cerrar sesion</Link>
           </li>
         </ul>
       </div>

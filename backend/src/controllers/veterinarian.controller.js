@@ -4,14 +4,15 @@ import { tryCatch } from '../utils/tryCatch';
 import Veterinarian from '../schemas/veterinarian.schema';
 import disableEntity from '../utils/disableEntity';
 import ErrorApp from '../utils/ErrorApp';
+import mongoose from 'mongoose';
+import Appointment from '../schemas/appointment.schema';
 
 // Registrar un nuevo veterinario
 export const createVeterinarian = async (req, res) => {
-  const { first_name, last_name, speciality, phone, license } = req.body;
+  const { fullname, speciality, phone, license } = req.body;
 
   const newVeterinarian = new Veterinarian({
-    first_name,
-    last_name,
+    fullname,
     speciality,
     phone,
     license,
@@ -38,15 +39,33 @@ export const getAllVeterinarians = tryCatch(async (req, res) => {
 export const getVeterinarianById = tryCatch(async (req, res) => {
   const { veterinarianId } = req.params;
 
-  const veterinarian = await Veterinarian.findById(veterinarianId);
+  const veterinarianData = await Veterinarian.aggregate([
+    {
+      $match: { _id: new mongoose.Types.ObjectId(veterinarianId) },
+    },
+  ]);
 
-  if (!veterinarian) {
-    const error = ErrorApp(`El veterinario no fué encontrado`, 404);
-    throw error;
+  if (!veterinarianData || veterinarianData.length === 0) {
+    return sendResponse(res, 404, 'Veterinario no encontrado', []);
   }
 
-  // Devuelve una respuesta RESTful desde utils
-  sendResponse(res, 200, 'Veterinario encontrado con éxito', veterinarian);
+  const activeAppointments = await Appointment.find({
+    veterinarianId: veterinarianData[0]._id,
+    isActive: true,
+  });
+
+  const response = {
+    _id: veterinarianData[0]._id,
+    speciality: veterinarianData[0].speciality,
+    phone: veterinarianData[0].phone,
+    license: veterinarianData[0].license,
+    photo_url: veterinarianData[0].photo_url,
+    isActive: veterinarianData[0].isActive,
+    fullname: veterinarianData[0].fullname,
+    activeAppointments: activeAppointments,
+  };
+
+  return sendResponse(res, 200, 'Veterinario encontrado con éxito', [response]);
 });
 
 // Actualizar un veterinario por ID

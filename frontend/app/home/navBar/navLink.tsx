@@ -10,7 +10,8 @@ export default function NavLink({
   children: React.ReactNode;
 }) {
   let segment = useSelectedLayoutSegment();
-  let active = href === `/${segment}`;
+  let active = href === `/${segment}` || (href === "/" && segment === null)
+  
   return (
     <Link
       className={

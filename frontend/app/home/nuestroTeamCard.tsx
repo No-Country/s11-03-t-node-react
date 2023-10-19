@@ -7,20 +7,15 @@ type Props = {
 }
 
 const Card = ({ title, text, src }: Props) => (
-  <div className="card bg-base-100 shadow-xl w-full rounded-none">
-    <figure className="">
-      <Image
-        src={src}
-        alt="Veterinario"        
-        width={600}
-        height={600}
-      />
+  <div className="card bg-base-100 rounded-none">
+    <figure>
+      <Image src={src} alt="Veterinario" width={300} height={300} />
     </figure>
     <div className="card-body items-center text-center">
       <h2 className="card-title">{title}</h2>
       <p className="hidden xl:flex">{text}</p>
-      <div className="card-actions w-4/6">
-        <button className="btn btn-accent text-base w-full">Pedir Cita</button>
+      <div className="card-actions w-4/6 items-center justify-center">
+        <button className="btn btn-accent text-base w-full max-w-sm">Pedir Cita</button>
       </div>
     </div>
   </div>

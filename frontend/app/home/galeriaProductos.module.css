@@ -1,0 +1,13 @@
+.imagen {
+    max-width: 100%;
+    margin-bottom: 0.5em;
+    display: block;
+    outline: 2px solid #fff;
+    outline-offset: -10px;
+}
+
+.gallery {
+    display: flex;
+    columns: 5 320px;
+    column-gap: 0.5em;
+}

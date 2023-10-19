@@ -17,13 +17,13 @@ const useErrors = () => {
   }
 
   function validarFullname(fullname: string) {
-    const regex = /^[A-Za-záéíóúüÁÉÍÓÚÜñÑ\s\-]{5,40}$/;
+    const regex = /^[A-Za-záéíóúüÁÉÍÓÚÜñÑ\s\-]{5,40}$/
     if (!regex.test(fullname)) {
-        setErrors({ fullname: 'Ingresaste un caractér no permitido' })
-        errorRef.current = true
-      }
+      setErrors({ fullname: 'Ingresaste un caractér no permitido' })
+      errorRef.current = true
+    }
     if (fullname.length == 0) {
-      setErrors({ fullname: '“El nombre y apellido es obligatorio' })
+      setErrors({ fullname: 'El nombre y apellido es obligatorio' })
       errorRef.current = true
     }
   }
@@ -32,7 +32,7 @@ const useErrors = () => {
     const regex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&()*+\/?@\[\]^_{|}~-])[A-Za-z\d!#$%&()*+\/?@\[\]^_{|}~-]{8,12}$/
     if (!regex.test(password)) {
-      setErrors({ password: 'Ingresa una contraseña válida ' + password })
+      setErrors({ password: 'Ingresa una contraseña válida ' })
       errorRef.current = true
     }
     if (password.length == 0) {
@@ -43,7 +43,7 @@ const useErrors = () => {
 
   function validarRepeatPassword(password: string, repeatPassword: string) {
     if (password !== repeatPassword) {
-      setErrors({ repeatPassword: 'Las contraseñas no coinciden: ' + password + " y " + repeatPassword })
+      setErrors({ repeatPassword: 'Las contraseñas no coinciden' })
       errorRef.current = true
     }
   }

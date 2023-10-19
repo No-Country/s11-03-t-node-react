@@ -12,7 +12,7 @@ import React, { useRef } from "react";
 import reviewsData from "../../data/reviews.json";
 import Slider from "react-slick";
 
-export const Reviews = () => {
+export default function Reviews ()  {
   const sliderRef = useRef<Slider | null>(null);
 
   const settings = {

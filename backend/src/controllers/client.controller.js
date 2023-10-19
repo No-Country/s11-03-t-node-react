@@ -5,6 +5,8 @@ import Client from '../schemas/client.schema';
 import disableEntity from '../utils/disableEntity';
 import ErrorApp from '../utils/ErrorApp';
 import mongoose from 'mongoose';
+import { sendEmail } from '../services/sendEmail';
+import fs from 'fs';
 
 // Obtener todos los clientes
 export const getAllClients = tryCatch(async (req, res) => {
@@ -16,6 +18,28 @@ export const getAllClients = tryCatch(async (req, res) => {
 
   // Devuelve una respuesta RESTful desde utils
   sendResponse(res, 200, 'Clientes encontrados con éxito', response);
+});
+
+// Enviar un mail a la veterinaria
+export const sendEmailToVet = tryCatch(async (req, res) => {
+  const { fullname, email, message } = req.body;
+
+  // Lee el contenido de la plantilla HTML desde el archivo
+  const template = fs.readFileSync('public/mails/templates/consultation_confirmation.html', 'utf8');
+
+  // Reemplaza los marcadores de posición en la plantilla con los datos dinámicos
+  const htmlContent = template
+    .replace('[Nombre Completo]', fullname)
+    .replace('[Correo Electrónico]', email)
+    .replace('[Mensaje]', message);
+
+  // Configura el asunto del correo electrónico
+  const subject = 'Consulta Médica';
+
+  // Envía el correo electrónico utilizando la función sendEmail
+  await sendEmail(email, subject, htmlContent);
+
+  sendResponse(res, 200, 'Correo enviado con éxito');
 });
 
 // Obtener un cliente por ID

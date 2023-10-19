@@ -8,9 +8,9 @@ const router = express.Router();
 // Registrar una mascota
 router.post('/', checkAuthentication, createPet);
 //Obtener todas las mascotas registradas
-router.get('/', checkAuthentication, getAllPets);
+router.get('/', getAllPets);
 //Obtener una mascota por Id
-router.get('/:petId', checkAuthentication, getPetById);
+router.get('/:petId', getPetById);
 //Actualizar la información de una mascota
 router.put('/:petId', checkAuthentication, updatePet);
 

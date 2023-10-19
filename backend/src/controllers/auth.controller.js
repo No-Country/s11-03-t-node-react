@@ -5,8 +5,8 @@ import { sendResponse } from '../responses/responseUtils';
 import Client from '../schemas/client.schema';
 import ErrorApp from '../utils/ErrorApp';
 import { tryCatch } from '../utils/tryCatch';
-import transporter from '../config/node-mailer';
 import { generateUniqueVerificationCode } from '../utils/generateUniqueVerificationCode';
+import { sendEmail } from '../services/sendEmail';
 
 // Importa la duración del token desde .env
 const TOKEN_EXPIRATION = process.env.TOKEN_EXPIRATION || '24h';
@@ -105,15 +105,8 @@ export const sendVerificationCode = tryCatch(async (req, res) => {
     .replace('[Código de Verificación]', recoveryCode)
     .replace('[Duración del Código]', '5');
 
-  // Envía el correo de recuperación con el código de verificación
-  const mailOptions = {
-    from: process.env.EMAIL_ADDRESS,
-    to: email,
-    subject: 'Verificación de correo electrónico',
-    html: emailContent,
-  };
-
-  await transporter.sendMail(mailOptions);
+  // Envía el correo de recuperación con el código de verificación utilizando la función sendEmail
+  await sendEmail(email, 'Verificación de correo electrónico', emailContent);
 
   // Respondemos con un mensaje de éxito
   sendResponse(res, 200, `Se ha enviado un código de verificación. Por favor, verifica tu bandeja de entrada.`);

@@ -22,7 +22,7 @@ router.param('veterinarianId', validMongoId('veterinarianId'));
 router.post('/', checkAuthentication, createVeterinarianValidation, createVeterinarian);
 router.get('/', getAllVeterinarians);
 router.get('/:veterinarianId', getVeterinarianById);
-router.patch('/:veterinarianId', checkAuthentication, updateVeterinarianValidation, updateVeterinarian);
+router.put('/:veterinarianId', checkAuthentication, updateVeterinarianValidation, updateVeterinarian);
 router.delete('/:veterinarianId', checkAuthentication, deleteVeterinarian);
 
 export default router;

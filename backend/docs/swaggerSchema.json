@@ -154,13 +154,9 @@
   "veterinarian": {
     "type": "object",
     "properties": {
-      "first_name": {
+      "fullname": {
         "type": "string",
-        "description": "Primer nombre del veterinario"
-      },
-      "last_name": {
-        "type": "string",
-        "description": "Apellido del veterinario"
+        "description": "Nombre completo del veterinario"
       },
       "speciality": {
         "type": "string",
@@ -190,8 +186,7 @@
       }
     },
     "required": [
-      "first_name",
-      "last_name",
+      "fullname",
       "speciality",
       "license"
     ]

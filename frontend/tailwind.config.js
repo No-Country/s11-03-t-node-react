@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} **/
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,6 +13,7 @@ module.exports = {
           primary: "#FFFFFF",
           "primary-content": "#1D2939",
           secondary: "#FFFAF5",
+          "secondary-content": "#F8F0EE",
           accent: "#FF5B2E",
           "accent-content": "#FFFFFF",
           neutral: "#2b3440",
@@ -37,6 +38,9 @@ module.exports = {
         title: ["var(--font-secular)", "sans-serif"],
         text: ["var(--font-inter)", "sans-serif"],
       },
+      backgroundImage: (theme) => ({
+        background: "url('/BackgroundCarousel.svg')",
+      }),
     },
   },
   plugins: [require("daisyui")],
