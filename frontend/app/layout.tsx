@@ -1,10 +1,10 @@
-import "./globals.css";
-import { inter, secular_one } from "@/fonts/fonts";
-import NavBar from "./home/navBar/navBar";
+import './globals.css';
+import { inter, secular_one } from '@/fonts/fonts';
+import NavBar from './home/navBar/navBar';
 
 export const metadata = {
-  title: "Vet Care",
-  description: "Made for NoCountry",
+  title: 'Vet Care',
+  description: 'Made for NoCountry',
 };
 
 export default function RootLayout({
