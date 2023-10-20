@@ -101,10 +101,6 @@ export const updateAppointmentValidation = generateValidationRules('updateAppoin
     notEmpty: {},
     isLength: { min: 0, max: 255 },
   },
-  cost: {
-    notEmpty: {},
-    isFloat: {},
-  },
   notes: {
     notEmpty: {},
     isLength: { min: 0, max: 255 },

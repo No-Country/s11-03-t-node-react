@@ -3,6 +3,7 @@ import Client from '../schemas/client.schema';
 import { sendResponse } from '../responses/responseUtils';
 import ErrorApp from '../utils/ErrorApp';
 import { tryCatch } from '../utils/tryCatch';
+import mongoose from 'mongoose';
 
 // Crear un nuevo mascota
 export const createPet = tryCatch(async (req, res) => {
@@ -36,10 +37,28 @@ export const getAllPets = tryCatch(async (req, res) => {
   sendResponse(res, 200, 'Mascotas encontradas con éxito', pets);
 });
 
-// Obtener una mascota por ID
+// Obtener una mascota por ID junto a su historial de citas
 export const getPetById = tryCatch(async (req, res) => {
   const { petId } = req.params;
-  const pet = await Pet.findById(petId);
+  //const pet = await Pet.findById(petId);
+  const pet = await Pet.aggregate([
+    {
+      $match: { _id: new mongoose.Types.ObjectId(petId) },
+    },
+    {
+      $lookup: {
+        from: 'appointments',
+        localField: '_id',
+        foreignField: 'petId',
+        as: 'appointments',
+      },
+    },
+    {
+      $sort: {
+        'appointments.date': -1,
+      },
+    },
+  ]).option({ lean: true });
   if (!pet) {
     const error = ErrorApp(`Mascota no encontrada`, 404);
     throw error;

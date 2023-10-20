@@ -174,7 +174,44 @@ export const updateAppointment = tryCatch(async (req, res) => {
     throw error;
   }
 
-  const updatedAppointment = await Appointment.findByIdAndUpdate(appointmentId, { $set: updateFields }, { new: true });
+  const updatedAppointment = await Appointment.findByIdAndUpdate(appointmentId, { $set: updateFields }, { new: true })
+    .populate('clientId')
+    .populate('veterinarianId')
+    .populate('petId');
+
+  // Lee la plantilla HTML desde el archivo para la confirmación de citas
+  const appointmentUpdateTemplatePath = 'public/mails/templates/appointment_confirmation.html';
+  const appointmentUpdateContent = fs.readFileSync(appointmentUpdateTemplatePath, 'utf8');
+
+  // Reemplaza las variables en la plantilla HTML
+  const clientFullname = updatedAppointment.clientId.fullname;
+  const veterinarianFullname = updatedAppointment.veterinarianId.fullname;
+  const petName = updatedAppointment.petId.name;
+  const appointmentDate = new Date(updatedAppointment.date).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+  const appointmentStartTime = new Date(updatedAppointment.start_time).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'UTC',
+  });
+
+  const appointmentUpdateContentReplaced = appointmentUpdateContent
+    .replace('Su cita ha sido confirmada', 'Su cita fué actualizada')
+    .replace('[Nombre de Mascota]', petName)
+    .replace('[Nombre del Cliente]', clientFullname)
+    .replace('[Nombre del Veterinario]', veterinarianFullname)
+    .replace('[Fecha de Cita]', appointmentDate)
+    .replace('[Hora de Inicio]', appointmentStartTime)
+    .replace('[Motivo de Cita]', updatedAppointment.reason);
+
+  // Envía el correo de confirmación de que la cita fue cancelada con la función sendEmail
+  const emailSubject = 'Modificación de Cita';
+  await sendEmail(updatedAppointment.clientId.email, emailSubject, appointmentUpdateContentReplaced);
 
   // Devuelve una respuesta RESTful desde utils
   sendResponse(res, 200, 'Cita actualizada con éxito', updatedAppointment);
@@ -184,6 +221,33 @@ export const updateAppointment = tryCatch(async (req, res) => {
 export const deleteAppointment = tryCatch(async (req, res) => {
   const { appointmentId } = req.params;
 
+  // Verifica la existencia de cliente, mascota y veterinario
+  const existingAppointment = await Appointment.findById(appointmentId).populate('veterinarianId').populate('clientId');
+  if (!existingAppointment) {
+    throw ErrorApp('Cita no encontrado', 404);
+  }
+  // Lee la plantilla HTML desde el archivo para la confirmación de citas
+  const appointmentCancellationTemplatePath = 'public/mails/templates/appointment_cancellation.html';
+  const appointmentCancellationContent = fs.readFileSync(appointmentCancellationTemplatePath, 'utf8');
+
+  // Reemplaza las variables en la plantilla HTML
+  const clientFullname = existingAppointment.clientId.fullname;
+  const veterinarianFullname = existingAppointment.veterinarianId.fullname;
+  const appointmentDate = new Date(existingAppointment.date).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+
+  const appointmentCancellationContentReplaced = appointmentCancellationContent
+    .replace('[Nombre del Cliente]', clientFullname)
+    .replace('[Nombre del Veterinario]', veterinarianFullname)
+    .replace('[Fecha de Cita]', appointmentDate);
+
+  // Envía el correo de confirmación de que la cita fue cancelada con la función sendEmail
+  const emailSubject = 'Cancelación de Cita';
+  await sendEmail(existingAppointment.clientId.email, emailSubject, appointmentCancellationContentReplaced);
   await disableEntity(Appointment, appointmentId, 'Cita');
 
   // Devuelve una respuesta RESTful desde utils
