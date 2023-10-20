@@ -1476,7 +1476,7 @@
                     "description": "ID de la cita a actualizar",
                     "schema": {
                         "type": "string",
-                        "example": "6526ecdc19dbfd9fc925be50"
+                        "example": "6531ec67c017234e76a2fbfd"
                     }
                 }],
                 "requestBody": {
@@ -1489,19 +1489,31 @@
                                 "properties": {
                                     "date": {
                                         "type": "Date",
-                                        "example": "2023-10-24T15:30"
+                                        "example": "2023-11-25"
+                                    },
+                                    "start_time": {
+                                        "type": "Date",
+                                        "example": "2023-11-25T14:00:00.000Z"
+                                    },
+                                    "end_time": {
+                                        "type": "Date",
+                                        "example": "2023-11-25T14:30:00.000Z"
                                     },
                                     "reason": {
                                         "type": "string",
-                                        "example": "Seguimiento postoperatorio de cirugía de esterilización"
-                                    },
-                                    "cost": {
-                                        "type": "float",
-                                        "example": 825.5
+                                        "example": "Dolores constantes en el estómago"
                                     },
                                     "notes": {
                                         "type": "string",
-                                        "example": "No se observan signos de infección o complicaciones. Se recomienda reposo y evitar actividades vigorosas durante los próximos 7 días. Seguir el régimen de medicación según lo prescrito."
+                                        "example": "Randu estuvo bien hasta hace unos días cuando empezó a estar hechado, sin ganas de jugar y ahora con aullidos de dolor en su estómago al parecer"
+                                    },
+                                    "petId": {
+                                        "type": "string",
+                                        "example": "6531bb1c687f4cd9ab2db84e"
+                                    },
+                                    "veterinarianId": {
+                                        "type": "string",
+                                        "example": "65257fdb84a825a841323454"
                                     }
                                 }
                             }
@@ -1529,31 +1541,39 @@
                                             "properties": {
                                                 "_id": {
                                                     "type": "string",
-                                                    "example": "6526ecdc19dbfd9fc925be50"
+                                                    "example": "6531ec67c017234e76a2fbfd"
                                                 },
                                                 "date": {
                                                     "type": "string",
-                                                    "example": "2023-10-24T18:30:00.000Z"
+                                                    "example": "2023-11-24T00:00:00.000Z"
+                                                },
+                                                "start_time": {
+                                                    "type": "string",
+                                                    "example": "2023-11-24T14:00:00.000Z"
+                                                },
+                                                "end_time": {
+                                                    "type": "string",
+                                                    "example": "2023-11-24T14:30:00.000Z"
                                                 },
                                                 "reason": {
                                                     "type": "string",
-                                                    "example": "Seguimiento postoperatorio de cirugía de esterilización"
-                                                },
-                                                "cost": {
-                                                    "type": "number",
-                                                    "example": 825.5
+                                                    "example": "Dolores constantes en el estómago"
                                                 },
                                                 "notes": {
                                                     "type": "string",
-                                                    "example": "No se observan signos de infección o complicaciones. Se recomienda reposo y evitar actividades vigorosas durante los próximos 7 días. Seguir el régimen de medicación según lo prescrito."
+                                                    "example": "Randu estuvo bien hasta hace unos días cuando empezó a estar hechado, sin ganas de jugar y ahora con aullidos de dolor en su estómago al parecer"
                                                 },
                                                 "petId": {
                                                     "type": "string",
-                                                    "example": "651ed133327751b68784ca17"
+                                                    "example": "6531bb1c687f4cd9ab2db84e"
                                                 },
                                                 "clientId": {
                                                     "type": "string",
-                                                    "example": "6524e02ef3d141c6a4325c94"
+                                                    "example": "653065c9e69cfa1f9fa22b97"
+                                                },
+                                                "veterinarianId": {
+                                                    "type": "string",
+                                                    "example": "65257fdb84a825a841323454"
                                                 },
                                                 "isActive": {
                                                     "type": "boolean",
@@ -1591,7 +1611,7 @@
                     "description": "ID de la cita a actualizar",
                     "schema": {
                         "type": "string",
-                        "example": "6526ecdc19dbfd9fc925be50"
+                        "example": "6531ec67c017234e76a2fbfd"
                     }
                 }],
                 "responses": {
