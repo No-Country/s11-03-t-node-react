@@ -1,51 +1,51 @@
-import Image from "next/image";
-import sobreNosotros from "../../assets/sobreNosotros/sobreNosotrosImage.png";
-import sobreNosotrosDesktop from "../../assets/sobreNosotros/sobreNosotrosDesktop.png" 
-import aboutDot from "../../assets/sobreNosotros/about-dot.png.png";
-import aboutDotDesktop from "../../assets/sobreNosotros/about-dotDesktop.png"
-import { Tick } from "../icons";
-import { ComponentType, SVGProps } from "react";
+import Image from 'next/image'
+import sobreNosotros from '../../assets/sobreNosotros/sobreNosotrosImage.png'
+import sobreNosotrosDesktop from '../../assets/sobreNosotros/sobreNosotrosDesktop.png'
+import aboutDot from '../../assets/sobreNosotros/about-dot.png.png'
+import aboutDotDesktop from '../../assets/sobreNosotros/about-dotDesktop.png'
+import { Tick } from '../icons'
+import { ComponentType, SVGProps } from 'react'
 interface ListItemType {
-  title: string;
-  svg: ComponentType<SVGProps<SVGSVGElement>>;
-  index?: number;
+  title: string
+  svg: ComponentType<SVGProps<SVGSVGElement>>
+  index?: number
 }
 const data: ListItemType[] = [
-  { title: "El mejor veterinario", svg: Tick },
-  { title: "Vacunaciones", svg: Tick },
-  { title: "Cuidado las 24 horas", svg: Tick },
-  { title: "Alimentacion saludable", svg: Tick },
-];
+  { title: 'El mejor veterinario', svg: Tick },
+  { title: 'Vacunaciones', svg: Tick },
+  { title: 'Cuidado las 24 horas', svg: Tick },
+  { title: 'Alimentacion saludable', svg: Tick },
+]
 const ListItemType = ({ title }: ListItemType) => (
   <div className="flex flex-col items-center md:hidden ">
     <div className="flex flex-row ">
       <span className="mr-6">{Tick && <Tick />}</span>
       <h3
         className="text-slate-700 text-base font-medium
-    font-['Inter'] leading-relaxed mb-7"
+     leading-relaxed mb-7"
       >
         {title}
       </h3>
     </div>
   </div>
-);
+)
 
-const ListItemType2 = ({start, end}:{start: number, end: number}) => (
+const ListItemType2 = ({ start, end }: { start: number; end: number }) => (
   <div className="hidden md:grid  md:grid-cols-2 ">
     {data.slice(start, end).map((item, index) => (
       <div key={index} className="md:flex-row md:flex">
         <span className="mr-6">{Tick && <Tick />}</span>
-        <h3 className="text-slate-700 text-base font-medium font-['Inter'] leading-relaxed mb-7">
+        <h3 className="text-slate-700 text-base font-medium  leading-relaxed mb-7">
           {item.title}
         </h3>
       </div>
     ))}
   </div>
-);
+)
 
 export default function SobreNosotros() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:gap-x-[200px] ">
+    <section className="flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:gap-x-[200px] mt-24">
       <div className="relative ">
         <Image
           src={aboutDot}
@@ -54,7 +54,7 @@ export default function SobreNosotros() {
           height={82}
           className="absolute top-[-15px] left-[-20px] z-[-30] md:hidden"
         />
-         <Image
+        <Image
           src={aboutDotDesktop}
           alt="sobreNosotros"
           width={197}
@@ -68,7 +68,7 @@ export default function SobreNosotros() {
           height={207}
           className="z-40 md:hidden "
         />
-         <Image
+        <Image
           src={sobreNosotrosDesktop}
           alt="sobreNosotros"
           width={481}
@@ -79,7 +79,7 @@ export default function SobreNosotros() {
       <div className="md:order-1 text-center md:text-left ">
         <h1
           className="w-80 text-accent text-base 
-       font-bold font-['Inter'] leading-relaxed mb-6"
+       font-bold  leading-relaxed mb-6"
         >
           Sobre nosotros
         </h1>
@@ -91,7 +91,7 @@ text-xl font-normal font-['Secular One'] mb-[33px] leading-normal"
         </h2>
         <p
           className="w-80  md:w-[624px] md:h-[78px] text-gray-500 text-sm md:text-xl font-normal 
-      font-['Inter'] leading-relaxed mb-8 "
+       leading-relaxed mb-8 "
         >
           En última instancia, el cuidado de mascotas y los servicios
           veterinarios son críticos para asegurar que nuestros amigos peludos,
@@ -101,9 +101,9 @@ text-xl font-normal font-['Secular One'] mb-[33px] leading-normal"
         {data.map((item, index) => (
           <ListItemType key={index} {...item} />
         ))}
-          <ListItemType2 start={0} end={2}/>
-          <ListItemType2 start={2} end={4}/> 
+        <ListItemType2 start={0} end={2} />
+        <ListItemType2 start={2} end={4} />
       </div>
     </section>
-  );
+  )
 }

@@ -4,7 +4,7 @@ import Section from './nuestrasSection'
 const NuestrasCaracteristicas = () => (
   <div className="flex flex-col-reverse items-center xl:flex-row text-primary-content justify-center pb-28">
     <div className="max-w-2xl">
-      <h4 className="text-center xl:text-start text-accent font-bold"> Nuestras Característcas</h4>
+      <h4 className="text-center xl:text-start text-accent font-bold mt-5"> Nuestras Característcas</h4>
       <h1 className="text-center xl:text-start text-xl xl:text-4xl mt-5 font-bold"> Cuidamos de tu mascota</h1>
       <p className="text-center xl:text-start mt-9 text-xl">
         El equipo de VetCare se dedica a proporcionar el más alto atención de

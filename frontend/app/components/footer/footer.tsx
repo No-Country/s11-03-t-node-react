@@ -1,13 +1,15 @@
-import Link from "next/link";
-import { SocialNetwork, SocialNetworkDesktop, Vet } from "./icons";
+import Link from 'next/link'
+import { SocialNetwork, SocialNetworkDesktop, Vet } from './icons'
 
 export default function Footer() {
   return (
-    <section className="bg-[#2F2D53] h-[102px] md:h-[230px] flex flex-col md:flex-row 
-    items-center md:justify-between mt-[54px] pt-[18px] md:px-[85px] md:py-[95px]">
-        <span className="md:hidden">
-          <Vet />
-        </span>
+    <section
+      className="bg-[#2F2D53] h-[102px] md:h-[230px] flex flex-col md:flex-row 
+    items-center md:justify-between pt-[18px] md:px-[85px] md:py-[95px]"
+    >
+      <span className="md:hidden">
+        <Vet />
+      </span>
       <div className="hidden md:flex md:flex-row">
         <span className="text-primary text-3xl font-normal h-9">Vet</span>
         <span className="">
@@ -17,7 +19,7 @@ export default function Footer() {
       </div>
       <h1
         className="w-[360px] text-center text-gray-100 
-        text-[10px] font-normal font-['Inter'] leading-none mt-[10px] md:hidden"
+        text-[10px] font-normal  leading-none mt-[10px] md:hidden"
       >
         © 2023 VetCare. Todos los derechos reservados
       </h1>
@@ -43,12 +45,14 @@ export default function Footer() {
           </li>
         </ul>
         <div className="hidden md:flex md:flex-row">
-          <span className="w-[108px] text-white text-xl font-semibold font-['Inter'] leading-[42px] tracking-tight">Seguinos</span>
+          <span className="w-[108px] text-white text-xl font-semibold  leading-[42px] tracking-tight">
+            Seguinos
+          </span>
           <span>
             <SocialNetworkDesktop />
           </span>
         </div>
       </div>
     </section>
-  );
+  )
 }
