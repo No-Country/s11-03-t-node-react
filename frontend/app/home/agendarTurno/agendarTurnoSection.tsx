@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import petsHome from '../../assets/petsHome.png'
+import petsHome from '../../assets/petsHome-big.png'
 import Link from 'next/link'
 import { FingerPrint, BiggerFingerprint } from '../icons'
 
@@ -23,9 +23,9 @@ export default function agendarTurnoSection() {
           <Image
             src={petsHome}
             alt="Pets Home"
-            width={417}
-            height={188}
-            className="md:absolute md:bottom-[28px] md:right-[70px] md:w-[900px] bg-cover"
+            width={817}
+            height={400}
+            className="md:absolute md:bottom-[8px] md:right-[70px] md:w-[750px] bg-cover"
           />
           <h1
             className="text-[#062D3E] text-[20px] leading-[26px] 

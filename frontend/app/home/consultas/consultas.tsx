@@ -13,15 +13,15 @@ export function Consultas() {
       className="flex flex-col bg-primary md:w-[856px] md:h-[708px] md:p-12"
     >
       <h1
-        className="w-[292px] text-center md:text-left text-slate-700 text-xl 
-      font-normal font-['Secular One'] mb-[47px]"
+        className="w-[292px] text-center md:text-left text-slate-700 text-3xl 
+      font-normal font-secular mb-10"
       >
         <Toaster />
         Consultas
       </h1>
       <label
         htmlFor="nombreyapellido"
-        className="text-slate-800 text-base font-medium  leading-none mb-[2px]"
+        className="text-slate-800 text-base font-medium  leading-none mb-2"
       >
         Nombre y Apellido
       </label>
@@ -37,7 +37,7 @@ export function Consultas() {
       <label
         htmlFor=""
         className="text-slate-800 text-base font-medium 
-       leading-none mb-[2px] mt-7"
+       leading-none mb-2 mt-7"
       >
         Correo electrónico
       </label>
@@ -53,7 +53,7 @@ export function Consultas() {
       <label
         htmlFor=""
         className="text-slate-800 text-base font-medium 
-       leading-none mb-[2px] mt-7"
+       leading-none mb-2 mt-7"
       >
         Mensaje
       </label>
