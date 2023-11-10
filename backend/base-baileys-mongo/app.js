@@ -5,7 +5,7 @@ const BaileysProvider = require('@bot-whatsapp/provider/baileys');
 const MongoAdapter = require('@bot-whatsapp/database/mongo');
 const ChatGPTClass = require('./chatgpt.class');
 //const { PROMP } = require('./promp.js');
-const { json } = require('express');
+
 
 /**
  * Declaramos las conexiones de Mongo
