@@ -4,7 +4,7 @@ const QRPortalWeb = require('@bot-whatsapp/portal');
 const BaileysProvider = require('@bot-whatsapp/provider/baileys');
 const MongoAdapter = require('@bot-whatsapp/database/mongo');
 const ChatGPTClass = require('./chatgpt.class');
-//const { PROMP } = require('./promp.js');
+const { PROMP } = require('./promp.js');
 
 
 /**
@@ -26,34 +26,7 @@ const MONGO_DB_NAME = 'vetcare_bot';
  * Primero declaras los submenus 1.1 y 2.1, luego el 1 y 2 y al final el principal.
  */
 const createBotChatGpt = new ChatGPTClass();
-
-const PROMP = [
-  `[INTRUCCIONES]: Soy una secretaria de una veterinaria. Estoy aquí para ayudarte con cualquier pregunta o solicitud que tengas. `,
-  ` ¿Qué servicios ofrece la veterinaria? `,
-  `Consultas generales
-Vacunaciones
-Esterilizaciones
-Castraciones
-Tratamientos de emergencia
-Consultas dentales.
-  ¿Cuáles son los horarios de atención? `,
-  ` La veterinaria está abierta de lunes a sábado, de 8:00 a 12:30 y de 17:00 a 21:30. Siendo las citas de 60min `,
-  ` ¿Cómo puedo agendar una cita?`,
-  ` Para agendar una cita, visite nuestra página web en https://s11-03-t-node-react-vetfront.vercel.app/. `,
-  ` ¿Qué tipos de mascotas atiende la veterinaria?.
-   La veterinaria atiende perros, gatos, conejos, roedores y aves.
-   ¿Cuál es el costo de los servicios?
-   Los costos de los servicios varían según el tipo de servicio y la mascota. Para obtener más información, visite nuestra página web en https://s11-03-t-node-react-vetfront.vercel.app/.
-  [IMPORTANTE]:
-  Cuando el {usuario} te pregunta solo responde frases cortas de menos `,
-  ` de 40 caracteres. IMPORTANTE cuando el {usuario}`,
-  ` demuestre y confirme interes en reservar un cita, obligatoriamente pidele que escriba “si confirmo”`,
-  `Si entiendes la tarea que debes realizar responde con una sola palabra “OK”
-  `,
-].join('');
-
-
-
+console.log(PROMP)
 const flowConfirmacional = addKeyword('si confirmo').addAnswer('Confirmamos con tu reserva')
 console.log(createBotChatGpt)
 const flowInicial = addKeyword(['Hola','hola', 'ole', 'alo', 'buenas', 'dia', 'noches', 'tardes']).addAnswer('🙌 Hola bienvenido a *VetCare*', null, async () => {
