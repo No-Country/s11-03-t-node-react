@@ -1,105 +1,103 @@
-"use client";
-import axios from "axios";
-import MascotaImage from "../mascotaModal/mascotaImage";
-import SubmitButton, { CancelarButton } from "../mascotaModal/submitButton";
-import UserData from "@/app/hooks/perfil/userData";
-import UseToken from "@/app/hooks/useToken";
-import { useImageMascota } from "@/app/store/mascota/ImageMascota";
-import { useState } from "react";
-import { useUpdateMutations } from "@/app/store/mascota/updateMutation";
-import toast from "react-hot-toast";
-import { useLoader } from "@/app/hooks/useLoader";
-import { Loader } from "@/app/components/loader";
+'use client'
+import axios from 'axios'
+import MascotaImage from '../mascotaModal/mascotaImage'
+import SubmitButton, { CancelarButton } from '../mascotaModal/submitButton'
+import UserData from '@/app/hooks/perfil/userData'
+import UseToken from '@/app/hooks/useToken'
+import { useImageMascota } from '@/app/store/mascota/ImageMascota'
+import { useState } from 'react'
+import { useUpdateMutations } from '@/app/store/mascota/updateMutation'
+import toast from 'react-hot-toast'
+import { useLoader } from '@/app/hooks/useLoader'
+import { Loader } from '@/app/components/loader'
 
 export async function updateDtaUser({
   id,
   token,
   data,
 }: {
-  id: number | null;
-  token: string | null;
-  data: any;
+  id: number | null
+  token: string | null
+  data: any
 }) {
   return await axios.put(
-    `https://s11-03-react-node-production.up.railway.app/api/v1/clients/${id}`,
+    `https://vetcare-qwzz.onrender.com/api/v1/clients/${id}`,
     data,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
-  );
+    },
+  )
 }
-const notifyOk = (msg: string) => toast.success(msg);
+const notifyOk = (msg: string) => toast.success(msg)
 export default function FormContent({ onClick }: { onClick: () => void }) {
   const initiaState = {
-    fullname: "",
-    phone: "",
-    email: "",
-    photo_url: "",
-  };
-  const { userId } = UserData();
-  const { token } = UseToken();
-  const ImageMascota = useImageMascota((state) => state.imageMascota);
+    fullname: '',
+    phone: '',
+    email: '',
+    photo_url: '',
+  }
+  const { userId } = UserData()
+  const { token } = UseToken()
+  const ImageMascota = useImageMascota((state) => state.imageMascota)
   const setUpdateMutations = useUpdateMutations(
-    (state) => state.setUpdateMutations
-  );
-  const setImageMascota = useImageMascota((state) => state.setImageMascota);
-  const [state, setState] = useState(initiaState);
-  const { isLoading, openLoader, closeLoader } = useLoader();
+    (state) => state.setUpdateMutations,
+  )
+  const setImageMascota = useImageMascota((state) => state.setImageMascota)
+  const [state, setState] = useState(initiaState)
+  const { isLoading, openLoader, closeLoader } = useLoader()
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formDataa = new FormData(form);
-    const fullname = formDataa.get("fullname");
-    const phone = formDataa.get("phone");
-    const email = formDataa.get("email");
+    e.preventDefault()
+    const form = e.currentTarget
+    const formDataa = new FormData(form)
+    const fullname = formDataa.get('fullname')
+    const phone = formDataa.get('phone')
+    const email = formDataa.get('email')
 
     const formData = {
       fullname: fullname,
       phone: phone,
       email: email,
       photo_url: ImageMascota,
-    };
+    }
     try {
-      openLoader();
+      openLoader()
       const data = await updateDtaUser({
         id: userId,
         token: token,
         data: formData,
-      });
+      })
       if (data?.status) {
-        notifyOk("Datos actualizados");
-        form.reset();
-        setUpdateMutations(true);
-        setState(initiaState);
-        onClick();
-        setImageMascota(null);
-        closeLoader();
+        notifyOk('Datos actualizados')
+        form.reset()
+        setUpdateMutations(true)
+        setState(initiaState)
+        onClick()
+        setImageMascota(null)
+        closeLoader()
       }
-    } catch (error: any) 
-    
-    {
+    } catch (error: any) {
       closeLoader()
       if (error.response.data?.errors) {
         setState({
           fullname: error.response.data?.errors?.fullname
             ? error.response.data?.errors.fullname[0]
-            : "",
+            : '',
           phone: error.response.data?.errors?.phone
             ? error.response.data?.errors.phone[0]
-            : "",
+            : '',
           email: error.response.data?.errors?.email
             ? error.response.data?.errors.email[0]
-            : "",
+            : '',
           photo_url: error.response.data?.errors?.photo_url
             ? error.response.data?.errors.photo_url[0]
-            : "",
-        });
+            : '',
+        })
       }
     }
-  };
+  }
   return (
     <div className="flex flex-col">
       <form onSubmit={handleSubmit} className="flex flex-col">
@@ -157,5 +155,5 @@ export default function FormContent({ onClick }: { onClick: () => void }) {
       </form>
       {!isLoading && <CancelarButton />}
     </div>
-  );
+  )
 }

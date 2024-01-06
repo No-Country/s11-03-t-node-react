@@ -1,12 +1,9 @@
 import Card from '../../home/nuestroTeamCard'
 
 const getData = async () => {
-  return await fetch(
-    'https://s11-03-react-node-production.up.railway.app/api/v1/veterinarians',
-    {
-      cache: 'no-store',
-    },
-  ).then((res) => res.json())
+  return await fetch('https://vetcare-qwzz.onrender.com/api/v1/veterinarians', {
+    cache: 'no-store',
+  }).then((res) => res.json())
 }
 
 type Props = {

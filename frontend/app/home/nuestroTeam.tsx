@@ -2,12 +2,9 @@ import Card from './nuestroTeamCard'
 import MySlider from './slider'
 
 const getData = async () => {
-  return await fetch(
-    'https://s11-03-react-node-production.up.railway.app/api/v1/veterinarians',
-    {
-      cache: 'no-store',
-    },
-  ).then((res) => res.json())
+  return await fetch('https://vetcare-qwzz.onrender.com/api/v1/veterinarians', {
+    cache: 'no-store',
+  }).then((res) => res.json())
 }
 
 var settings = {
@@ -43,9 +40,7 @@ async function NuestroTeam({ rows = 1 }) {
   return (
     <div className="block px-10 pb-24 bg-secondary pt-24">
       <div className="max-w-[90rem] m-auto">
-        <h4 className="text-center text-accent font-bold">
-          Profesionales
-        </h4>
+        <h4 className="text-center text-accent font-bold">Profesionales</h4>
         <h1 className="text-center text-xl xl:text-3xl mt-2 font-bold mb-10">
           Nuestro TEAM
         </h1>
