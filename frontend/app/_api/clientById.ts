@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = 'https://s11-03-react-node-production.up.railway.app/api/v1'
+const BASE_URL = 'https://vetcare-qwzz.onrender.com/api/v1'
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -16,7 +16,7 @@ export const clientByIdService = async (token: string, id: string) => {
       return res
     }
     return null
-  } catch (error) {    
+  } catch (error) {
     return error
   }
 }

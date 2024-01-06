@@ -1,38 +1,33 @@
-"use client";
-import axios from "axios";
-import { Close } from "../../icons";
-import { usePetId } from "@/app/store/mascota/petId";
-import { useUpdateMutations } from "@/app/store/mascota/updateMutation";
-import { useRouter } from "next/navigation";
+'use client'
+import axios from 'axios'
+import { Close } from '../../icons'
+import { usePetId } from '@/app/store/mascota/petId'
+import { useUpdateMutations } from '@/app/store/mascota/updateMutation'
+import { useRouter } from 'next/navigation'
 
 export default function DeleteMascota() {
-  const route = useRouter();
+  const route = useRouter()
   const setUpdateMutation = useUpdateMutations(
-    (state) => state.setUpdateMutations
-  );
-  const petId = usePetId((state) => state.petId);
+    (state) => state.setUpdateMutations,
+  )
+  const petId = usePetId((state) => state.petId)
 
   const handleDeleteMascota = () => {
     axios
-      .delete(
-        `https://s11-03-react-node-production.up.railway.app/api/v1/pets/${petId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
+      .delete(`https://vetcare-qwzz.onrender.com/api/v1/pets/${petId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
-        const modal = document.getElementById(
-          "my_modal_8"
-        ) as HTMLDialogElement;
-        modal?.showModal();
-        if(response){
-         return setUpdateMutation(true);
+        const modal = document.getElementById('my_modal_8') as HTMLDialogElement
+        modal?.showModal()
+        if (response) {
+          return setUpdateMutation(true)
         }
         // if (response) {
         //   axios.delete(
-        //     `https://s11-03-react-node-production.up.railway.app/api/v1/images/${imageId}`,
+        //     `https://vetcare-qwzz.onrender.com/api/v1/images/${imageId}`,
         //     {
         //       headers: {
         //         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -42,9 +37,9 @@ export default function DeleteMascota() {
         // }
       })
       .catch((error) => {
-        console.error("Error deleting pet", error);
-      });
-  };
+        console.error('Error deleting pet', error)
+      })
+  }
 
   return (
     <div>
@@ -52,7 +47,7 @@ export default function DeleteMascota() {
         <div className="modal-box ">
           <form method="dialog" className="flex justify-end mb-[19px]">
             {/* if there is a button in form, it will close the modal */}
-            <button onClick={()=> route.back()}>
+            <button onClick={() => route.back()}>
               <Close />
             </button>
           </form>
@@ -79,5 +74,5 @@ export default function DeleteMascota() {
         </div>
       </dialog>
     </div>
-  );
+  )
 }
